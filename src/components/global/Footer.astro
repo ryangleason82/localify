@@ -1,0 +1,119 @@
+---
+import { getEntry } from "astro:content";
+const siteConfig = await getEntry("config", "site");
+const aboutConfig = await getEntry("about", "about");
+
+import { Icon } from "astro-icon";
+
+const links = [
+  {
+    title: "Home",
+    url: "/",
+  },
+  {
+    title: "About",
+    url: "/about/",
+  },
+  {
+    title: "Contact",
+    url: "/contact/",
+  },
+];
+---
+
+<footer id="footer" class="bg-primary mb-auto py-20">
+  <div class="flex justify-center">
+    <div class="grid md:grid-cols-3 max-w-7xl">
+      <div class="flex flex-col">
+        <div class="flex mb-3">
+          <a href="/" class="flex max-md:justify-center">
+            <div class="flex flex-col text-center max-md:justify-center">
+              <div
+                class="font-bold text-2xl text-white whitespace-nowrap font-poppins"
+              >
+                {siteConfig.data.name}
+              </div>
+              <div class="text-white font-garamond italic">
+                {aboutConfig.data.aboutBody.indexLandingHeader}
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="flex flex-row items-center max-md:justify-center my-1">
+          <div>
+            <Icon
+              pack="mdi"
+              class="w-8 h-8 text-white p-1 inline-block"
+              name="phone"
+            />
+          </div>
+          <div class="text-white">+1 (245) 215-4908</div>
+        </div>
+        <div class="flex flex-row items-center max-md:justify-center my-1">
+          <div>
+            <Icon
+              pack="mdi"
+              class="w-8 h-8 text-white p-1 inline-block"
+              name="email"
+            />
+          </div>
+          <div class="text-white">hello@ggilabs.com</div>
+        </div>
+      </div>
+      <div class="text-center max-md:my-10">
+        <div class="text-2xl font-bold mb-4 font-poppins text-white">Links</div>
+        {
+          links.map((i) => (
+            <a href={i.url}>
+              <div class="font-semibold my-2 text-white">{i.title}</div>
+            </a>
+          ))
+        }
+      </div>
+      <div class="flex items-center flex-col">
+        <div class="text-2xl font-bold font-poppins text-white">
+          Connect With Me
+        </div>
+        <div class="flex flex-row pt-2">
+          <a target="_" href="https://www.linkedin.com/company/ggilabs/"
+            ><Icon
+              pack="mdi"
+              class="w-12 h-12 text-white p-1 inline-block"
+              name="linkedin"
+            /></a
+          >
+          <a target="_" href="https://www.youtube.com/"
+            ><Icon
+              pack="mdi"
+              class="w-12 h-12 text-white p-1 inline-block"
+              name="youtube"
+            /></a
+          >
+          <a target="_" href="https://www.instagram.com/ggilabs/"
+            ><Icon
+              pack="mdi"
+              class="w-12 h-12 text-white p-1 inline-block"
+              name="instagram"
+            /></a
+          >
+          <a target="_" href="https://twitter.com/"
+            ><Icon
+              pack="mdi"
+              class="w-12 h-12 text-white p-1 inline-block"
+              name="twitter"
+            /></a
+          >
+          <a
+            target="_"
+            href="https://www.facebook.com/profile.php?id=61553172113412"
+            ><Icon
+              pack="mdi"
+              class="w-12 h-12 text-white p-1 inline-block"
+              name="facebook"
+            /></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

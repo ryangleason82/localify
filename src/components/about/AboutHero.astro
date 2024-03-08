@@ -1,0 +1,25 @@
+---
+import { getEntry } from "astro:content";
+const aboutConfig = await getEntry("about", "about");
+---
+
+<section class="bg-tertiary flex flex-col">
+  <div class="flex justify-center my-10">
+    <div class="max-w-5xl">
+      <div class="px-5">
+        <img
+          src={aboutConfig.data.aboutBody.images.about}
+          class="rounded-xl aspect-[3/4] object-cover md:float-right md:w-96 md:mx-5 mb-5"
+        />
+      </div>
+
+      <div class="text-lg text-black text-justify mx-5">
+        {
+          aboutConfig.data.aboutBody.indexAboutDescription.map((i: String) => (
+            <p class="mb-6">{i}</p>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,72 @@
+---
+import { getEntry } from "astro:content";
+const contentConfig = await getEntry("about", "about");
+---
+
+<div class="flex flex-col justify-center">
+  <div class="flex justify-center my-10">
+    <div class="max-w-5xl">
+      <div class="flex items-center md:flex-row flex-col">
+        <div class="md:w-1/2 mx-4">
+          <img
+            src={contentConfig.data.aboutBody.images.services1}
+            class="rounded-xl aspect-[4/3] object-cover"
+            alt=""
+          />
+        </div>
+        <div
+          class="md:w-1/2 flex-col flex mx-4 gap-4 max-md:mt-10 max-md:text-center"
+        >
+          <div class="font-quattro text-4xl font-bold text-primary">
+            {contentConfig.data.aboutBody.servicesArray[0].serviceHeader}
+          </div>
+          <div class="text-xl text-justify text-black">
+            {contentConfig.data.aboutBody.servicesArray[0].serviceParagraph}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center my-10">
+    <div class="max-w-5xl">
+      <div class="flex items-center gap-10 md:flex-row flex-col-reverse">
+        <div class="flex-col flex md:w-1/2 mx-4 gap-4 max-md:text-center">
+          <div class="font-quattro text-4xl font-bold text-primary">
+            {contentConfig.data.aboutBody.servicesArray[1].serviceHeader}
+          </div>
+          <div class="text-justify text-xl text-black">
+            {contentConfig.data.aboutBody.servicesArray[1].serviceParagraph}
+          </div>
+        </div>
+        <div class="md:w-1/2 mx-4">
+          <img
+            src={contentConfig.data.aboutBody.images.services2}
+            class="rounded-xl aspect-[4/3] object-cover"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center my-10">
+    <div class="max-w-5xl">
+      <div class="flex items-center gap-10 md:flex-row flex-col">
+        <div class="md:w-1/2 mx-4">
+          <img
+            src={contentConfig.data.aboutBody.images.services3}
+            class="rounded-xl aspect-[4/3] object-cover"
+            alt=""
+          />
+        </div>
+        <div class="flex-col flex md:w-1/2 mx-4 gap-4 max-md:text-center">
+          <div class="font-quattro text-4xl font-bold text-primary">
+            {contentConfig.data.aboutBody.servicesArray[2].serviceHeader}
+          </div>
+          <div class="text-xl text-justify text-black">
+            {contentConfig.data.aboutBody.servicesArray[2].serviceParagraph}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

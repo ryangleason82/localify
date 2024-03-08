@@ -1,0 +1,63 @@
+---
+import { Icon } from "astro-icon";
+import { getEntry } from "astro:content";
+const contentConfig = await getEntry("about", "about");
+
+const process = [
+  {
+    icon: "hand-coin",
+    title: `${contentConfig.data.aboutBody.servicesArray[0].serviceHeader}`,
+    description: `${contentConfig.data.aboutBody.servicesArray[0].serviceDescription}`,
+  },
+  {
+    icon: "handshake-outline",
+    title: `${contentConfig.data.aboutBody.servicesArray[1].serviceHeader}`,
+    description: `${contentConfig.data.aboutBody.servicesArray[1].serviceDescription}`,
+  },
+
+  {
+    icon: "sprout",
+    title: `${contentConfig.data.aboutBody.servicesArray[2].serviceHeader}`,
+    description: `${contentConfig.data.aboutBody.servicesArray[2].serviceDescription}`,
+  },
+];
+---
+
+<section>
+  <div class="flex justify-center py-10 bg-white" id="process">
+    <div class="max-w-5xl mx-4">
+      <div class="text-4xl text-center font-bold text-primary font-poppins">
+        {contentConfig.data.aboutBody.indexLandingSubheader}
+      </div>
+      <div class="text-center text-xl my-10 font-poppins">
+        {contentConfig.data.aboutBody.indexLandingDescription} Here's an overview
+        of our services:
+      </div>
+      <div class="grid md:grid-cols-3 grid-cols-1 justify-center gap-6 my-5">
+        {
+          process.map((i) => (
+            <div class="text-center">
+              <div>
+                <Icon
+                  pack="mdi"
+                  class="w-16 h-16  text-secondary p-1 inline-block "
+                  name={i.icon}
+                />
+              </div>
+              <div class="text-3xl text-primary font-poppins">{i.title}</div>
+              <div class="text-md my-3 font-poppins">{i.description}</div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="flex justify-center">
+        <a href="/services/">
+          <button
+            class="border-2 border-primary text-white rounded-xl bg-primary hover:bg-secondary hover:text-white p-4 text-lg font-bold font-poppins"
+            >See Services</button
+          >
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

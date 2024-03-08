@@ -1,0 +1,20 @@
+---
+import { getEntry } from "astro:content";
+import ContactHero from "../components/contact/ContactHero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+const siteConfig = await getEntry("config", "site");
+let canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const title = `Contact | ${siteConfig.data.name}`
+---
+
+<BaseLayout
+  title={title}
+  description="Conatct GGILabs at hello@GGILabs.com"
+  canonicalURL={canonicalURL}
+>
+  <PageLayout>
+    <ContactHero />
+  </PageLayout>
+</BaseLayout>

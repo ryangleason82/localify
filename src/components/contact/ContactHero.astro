@@ -1,0 +1,43 @@
+---
+import CalendlyEmbed from "./CalendlyEmbed.astro";
+---
+
+<div
+  class="flex text-primary pt-[68px] justify-center items-center min-h-[calc(100vh-310px)] astro-component"
+>
+  <div class="max-w-5xl text-center mx-4">
+    <div class="text-4xl">Start a project with us.</div>
+    <a href="mailto:hello@ggilabs.com"
+      ><div class="md:text-3xl text-xl mt-4 fade-in-text">
+        hello@ggilabs.com
+      </div></a
+    >
+    <div>
+      <CalendlyEmbed />
+    </div>
+  </div>
+</div>
+
+<style>
+  .astro-component {
+    opacity: 0;
+  }
+
+  .fade-in-text {
+    transition: opacity 3s ease-in-out;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+</style>
+
+<script>
+  var astroComponent =
+    document.querySelector(".astro-component") ?? document.createElement("div");
+
+  setTimeout(function () {
+    astroComponent.classList.add("fade-in");
+  }, 500);
+</script>

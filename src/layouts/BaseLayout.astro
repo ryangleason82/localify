@@ -1,0 +1,76 @@
+---
+import "../styles/tailwind-base.css";
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalURL?: URL;
+  ogImage?: string;
+  schemaOrg?: object;
+  nofollow?: string;
+  noindex?: string;
+}
+
+const title = Astro.props.title || "GGILabs Title Missing";
+const description = Astro.props.description || "GGILabs Description Missing";
+const canonicalURL = Astro.props.canonicalURL || new URL("/", Astro.site);
+const schemaOrg = Astro.props.schemaOrg || {
+  schemaOrg: "SchemaOrg Not Defined",
+};
+const ogImage = new URL(Astro.props.ogImage || "./GGILabsWizard.jpg", Astro.site);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/letter_g.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins&display=swap" rel="stylesheet">
+
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <link rel="canonical" href={Astro.props.canonicalURL || Astro.url.href} />
+
+    {
+      Astro.props.description ? (
+        <meta name="description" content={Astro.props.description} />
+      ) : null
+    }
+
+    <meta
+      name="robots"
+      content={`${Astro.props.noindex ? "noindex" : "index"}, ${
+        Astro.props.nofollow ? "nofollow" : "follow"
+      }`}
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/GGILabsWizard.jpg"  />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:ogImage" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>
+
+<script>
+  // Google Analytics
+  var host = window.location.hostname;
+  if (host != "localhost") {
+  }
+</script>

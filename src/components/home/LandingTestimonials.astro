@@ -1,0 +1,50 @@
+---
+import { getEntry } from "astro:content";
+const contentConfig = await getEntry("about", "about");
+const customers = [
+  {
+    image: contentConfig.data.aboutBody.images.testimonial1,
+    description: contentConfig.data.aboutBody.indexLandingTestimonials[0],
+    author: "Simon L",
+  },
+  {
+    image: contentConfig.data.aboutBody.images.testimonial2,
+    description: contentConfig.data.aboutBody.indexLandingTestimonials[1],
+    author: "Sharon",
+  },
+  {
+    image: contentConfig.data.aboutBody.images.testimonial3,
+    description: contentConfig.data.aboutBody.indexLandingTestimonials[2],
+    author: "Mark B",
+  },
+];
+---
+
+<div class="bg-white pt-4 flex justify-center w-full flex-col">
+  <div class="flex flex-col xl:ml-10 xl:my-10 max-xl:text-center">
+    <div class="xl:text-5xl text-3xl text-primary text-center font-garamond">
+      What Our Customers Say
+    </div>
+  </div>
+  <div class="flex justify-center items-center">
+    <div
+      class="max-w-7xl max-md:gap-2 grid md:grid-cols-3 grid-cols-1 xl:mx-10 mx-2 py-10 items-center"
+    >
+      {
+        customers.map((i) => (
+          <div class="flex flex-col h-full mx-5 border border-solid p-4 mb-2 border-primary rounded-xl text-primary">
+            <img
+              class="rounded-lg aspect-[4/3] object-cover"
+              src={i.image}
+              alt=""
+            />
+            <div class="xl:m-4 m-2 lg:text-xl text-lg">"{i.description}"</div>
+            <div class="xl:px-5 mb-4 text-lg flex justify-end">
+              - {i.author}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

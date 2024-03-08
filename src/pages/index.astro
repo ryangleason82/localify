@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { getEntry } from "astro:content";
+import { getSchemaOrg } from "../js/utils.ts";
+import Landing from "../components/home/Landing.astro";
+import LandingAbout from "../components/home/LandingAbout.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+import LandingQuote from "../components/home/LandingQuote.astro";
+import LandingServices from "../components/home/LandingServices.astro";
+import LandingCTA from "../components/home/LandingCTA.astro";
+
+const siteConfig = await getEntry("config", "site");
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const schemaOrg = await getSchemaOrg("LocalBusiness", Astro);
+
+const title = `Home | ${siteConfig.data.name}`
+---
+
+<BaseLayout
+  title={title}
+  description="Home"
+  canonicalURL={canonicalURL}
+  schemaOrg={schemaOrg}
+  >
+  <PageLayout>
+    <Landing />
+    <LandingAbout />
+    <LandingQuote />
+    <LandingServices />
+    <LandingCTA />
+  </PageLayout>
+
+</BaseLayout>

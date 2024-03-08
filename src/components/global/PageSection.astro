@@ -1,0 +1,26 @@
+---
+export interface Props {
+  dark?: boolean;
+  bgColor?: string;
+  txtColor?: string;
+  headingsColor?: string;
+  maxWidth?: string;
+}
+const {
+  dark = false,
+  maxWidth = "max-w-lg sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-7xl",
+} = Astro.props;
+
+const componentClass = "py-4";
+const bgColor = dark ? "bg-primary-900" : "bg-neutral-50";
+const textColor = dark ? "text-neutral-50" : "text-primary-900";
+const headingsColor = dark
+  ? "prose-headings:text-secondary-500"
+  : "prose-headings:text-primary-900";
+---
+
+<section class:list={[componentClass, bgColor, textColor, headingsColor]}>
+  <div class:list={[maxWidth, "mx-auto"]}>
+    <slot />
+  </div>
+</section>

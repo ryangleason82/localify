@@ -1,0 +1,70 @@
+---
+import { Icon } from "astro-icon";
+const links = [
+  {
+    title: "Amazon Store",
+    url: "https://www.amazon.com/",
+  },
+  {
+    title: "LinkedIn",
+    url: "https://www.linkedin.com/company/ggilabs/",
+  },
+  {
+    title: "Twitter",
+    url: "https://twitter.com/",
+  },
+];
+
+---
+
+<section id="schedule" class="flex flex-col">
+  <div class="my-10 font-poppins text-center text-primary">
+    <div class="text-xl">FIND SOME TIME</div>
+    <div class="font-bold text-4xl">To Connect</div>
+  </div>
+
+  <div class="flex flex-col justify-center bg-white">
+    <div class="flex flex-row justify-center mt-3">
+      <a target="_" href="https://www.linkedin.com/company/ggilabs/"
+        ><Icon
+          pack="mdi"
+          class="w-12 h-12 text-primary p-1 inline-block"
+          name="linkedin"
+        /></a
+      >
+      <a target="_" href="https://twitter.com/"
+        ><Icon
+          pack="mdi"
+          class="w-12 h-12 text-primary p-1 inline-block"
+          name="twitter"
+        /></a
+      >
+      <a target="_" href="https://www.amazon.com/"
+        ><Icon
+          pack="mdi"
+          class="w-12 h-12 text-primary p-1 inline-block"
+          name="amazon"
+        /></a
+      >
+    </div>
+
+    <div class="flex flex-col justify-center items-center my-10">
+      <div class="">
+        {
+          links.map((i) => (
+            <a href={i.url} target="_">
+              <div class="py-2 text-center w-80 my-3 text-xl font-bold hover:bg-primary hover:text-white  text-primary border-4 border-primary">
+                <Icon
+                  pack="mdi"
+                  class="w-10 text-gray-500 mr-2 inline-block"
+                  name="link"
+                />
+                {i.title}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

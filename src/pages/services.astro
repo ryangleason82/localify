@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getEntry } from "astro:content";
+import PageLayout from "../layouts/PageLayout.astro";
+import PageSection from "../components/global/PageSection.astro";
+import ServicesDescription from "../components/services/ServicesDescription.astro";
+import LandingCTA from "../components/home/LandingCTA.astro";
+let canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteConfig = await getEntry("config", "site");
+
+const title = `Services | ${siteConfig.data.name}`
+---
+
+<BaseLayout
+  title={title}
+  description="GGILabs is a web hosting and software development company based in Doylestown, PA"
+  canonicalURL={canonicalURL}
+>
+  <PageLayout>
+    <PageSection>
+      <div class="flex flex-col text-xl font-poppins text-primary justify-center text-center my-5">
+        <div>CHECK OUT MY</div>
+        <h1
+          class=`flex mx-4 justify-center text-4xl font-bold font-quattro `
+        >
+          Services
+        </h1>
+      </div>
+      <ServicesDescription />
+    </PageSection>
+    <LandingCTA />
+  </PageLayout>
+</BaseLayout>

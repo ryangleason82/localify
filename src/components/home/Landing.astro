@@ -1,0 +1,45 @@
+---
+import { getEntry } from "astro:content";
+const contentConfig = await getEntry("about", "about");
+const siteConfig = await getEntry("config", "site");
+
+const home = contentConfig.data.aboutBody;
+---
+
+<section id="Landing">
+  <div class="bg-cover bg-landing">
+    <div class="dark-overlay">
+      <div class="flex h-[32rem] justify-center text-center">
+        <div class="flex max-w-5xl font-poppins mx-2">
+          <div
+            class="flex justify-center items-center flex-col md:mt-20 mt-5 max-md:text-center"
+          >
+            <h1
+              class="font-poppins xl:text-7xl text-4xl font-bold text-primary"
+            >
+              {home.indexLandingHeader}
+            </h1>
+            <h2 class="my-5 font-bold xl:text-3xl text-xl text-black">
+              {home.indexLandingSubheader}
+            </h2>
+
+            <div class="flex max-md:justify-center">
+              <a href="/contact/">
+                <button
+                  class="border-2 border-primary text-white rounded-xl bg-primary hover:bg-secondary hover:text-white p-4 text-lg font-bold font-quattro"
+                  >{siteConfig.data.cta}</button
+                >
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .dark-overlay {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+</style>

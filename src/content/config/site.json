@@ -1,0 +1,36 @@
+{
+  "name": "Derek's Dental ",
+  "url": "https://cctours.com",
+  "cta": "Contact Us",
+  "tagLine": "hardcoded",
+  "telephone": "267-865-4986",
+  "email": "ryangleason82@gmail.com",
+  "linkedin": "https://www.linkedin.com/company/ggilabs/",
+  "instagram": "https://www.instagram.com/ggilabs/",
+  "facebook": "https://www.facebook.com/profile.php?id=61553172113412",
+  "logo": "",
+  "address": "",
+  "streetAddress": "",
+  "city": "",
+  "state": "",
+  "postalCode": "",
+  "homeHero": "wood-kitchen.jpg",
+  "linksDesktop": [
+    { "order": 1, "label": "About", "href": "/about/" },
+    { "order": 2, "label": "Blog", "href": "/blog/" },
+    { "order": 3, "label": "Gallery", "href": "/gallery/" },
+    { "order": 4, "label": "Contact", "href": "/contact/" }
+  ],
+  "linksMobile": [
+    { "order": 1, "label": "About", "href": "/about/" },
+    { "order": 2, "label": "Blog", "href": "/blog/" },
+    { "order": 3, "label": "Gallery", "href": "/gallery/" },
+    { "order": 4, "label": "Contact", "href": "/contact/" }
+  ],
+  "linksSocial": [
+    { "order": 1, "label": "About", "href": "/about/" },
+    { "order": 2, "label": "Blog", "href": "/blog/" },
+    { "order": 3, "label": "Gallery", "href": "/gallery/" },
+    { "order": 4, "label": "Contact", "href": "/contact/" }
+  ]
+}

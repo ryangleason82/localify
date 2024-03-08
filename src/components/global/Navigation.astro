@@ -1,0 +1,160 @@
+---
+import { getEntry } from "astro:content";
+const siteConfig = await getEntry("config", "site");
+const textLinks: { label: string; href: string }[] = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about/" },
+  { label: "Services", href: "/services/" },
+  { label: "Contact", href: "/contact/" },
+];
+---
+
+<nav class="bg-white sticky w-full z-30 top-0 left-0">
+  <div
+    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto"
+  >
+    <a
+      href="/"
+      class="flex items-center font-paris text-3xl max-md:text-2xl text-primary p-4"
+    >
+      {siteConfig.data.name}
+    </a>
+    <div class="flex md:order-2">
+      <a href="/contact/">
+        <button
+          type="button"
+          class="max-sm:hidden text-white border-primary bg-primary hover:bg-secondary hover:text-tertiary focus:ring-4 rounded-xl font-bold font-poppins border-2 text-sm px-4 py-2 text-center mr-3 md:mr-0"
+          >{siteConfig.data.cta}</button
+        >
+      </a>
+      <nav-wrapper>
+        <template>
+          <button
+            id="nav-button"
+            data-collapse-toggle="navbar-sticky"
+            type="button"
+            class="navbar-sticky inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-primary max-md:mr-5 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            aria-controls="navbar-sticky"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"></path>
+            </svg>
+          </button>
+        </template>
+      </nav-wrapper>
+    </div>
+    <div
+      class="items-center justify-between w-full md:flex md:w-auto md:order-1"
+      id="navbar-sticky2"
+    >
+      <ul
+        class="flex flex-col md:p-0 mt-4 font-medium text-primary rounded-lg md:flex-row md:mt-0 md:border-0 font-poppins"
+      >
+        {
+          textLinks.map(({ label, href }) => (
+            <li class="p-2 font-bold">
+              <a
+                class:list={[
+                  "link",
+                  {
+                    active:
+                      Astro.url.pathname === href ||
+                      (href !== "/" && Astro.url.pathname.startsWith(href)),
+                  },
+                ]}
+                aria-current="page"
+                href={href}
+              >
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  class MenuButton extends HTMLElement {
+    constructor() {
+      super();
+
+      // Inject menu toggle on mobile when the JS runs
+      this.appendChild(this.querySelector("template")!.content.cloneNode(true));
+      const btn =
+        this.querySelector("button") || document.createElement("button");
+
+      // Get the div with the menu contents -- the unordered list, hide intially
+      const menu =
+        document.getElementById("navbar-sticky2") ||
+        document.createElement("div");
+      menu.hidden = true;
+
+      // a toggle - do the opposite of current state when clicked
+      const setExpanded = (expand: boolean) => {
+        btn.setAttribute("aria-expanded", expand ? "true" : "false");
+        menu.hidden = !expand;
+      };
+      btn.addEventListener("click", () => {
+        setExpanded(menu.hidden);
+      });
+
+      // hide the mobile nav button if the screen is less than 50em
+      const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
+        setExpanded(e.matches);
+        btn.hidden = e.matches;
+      };
+      const mediaQueries = window.matchMedia("(min-width: 50em)");
+      handleViewports(mediaQueries);
+      mediaQueries.addEventListener("change", handleViewports);
+    }
+  }
+  customElements.define("nav-wrapper", MenuButton);
+</script>
+
+<style>
+  .link {
+    display: inline-block;
+    color: var(--gray-300);
+    text-decoration: none;
+  }
+
+  .link.active {
+    color: theme("colors.secondary");
+  }
+
+  @media (min-width: 50em) {
+    .link {
+      padding: 0.5rem 1rem;
+      border-radius: 999rem;
+      transition:
+        color var(--theme-transition),
+        background-color var(--theme-transition);
+    }
+
+    .link:hover,
+    .link:focus {
+      color: var(--gray-100);
+      background-color: var(--accent-subtle-overlay);
+    }
+
+    .link.active {
+      color: theme("colors.secondary");
+      /* background-color: var(--accent-regular); */
+    }
+  }
+</style>
